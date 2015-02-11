@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecetaCol" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="001f689a-f3d0-4988-9d7f-5bea556b909c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="folio" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT fol_rec,nom_com,fecha_hora,cla_pro,des_pro,lote,DATE_FORMAT(caducidad,'%d/%m/%Y') as caducidad,can_sol,cant_sur FROM recetas where fol_rec=$P{folio}]]>
+	</queryString>
+	<field name="fol_rec" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_com" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_hora" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lote" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="caducidad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="can_sol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_sur" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<columnHeader>
+		<band height="91">
+			<staticText>
+				<reportElement uuid="a7f62d3f-c316-4808-8c83-678220595797" x="208" y="0" width="112" height="13"/>
+				<textElement/>
+				<text><![CDATA[USUARIO EJECUTIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="92187fff-b5b3-4624-9653-9a71af07bd18" x="208" y="30" width="112" height="13"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECETA COLECTIVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ccb2a46-9cab-4c04-82d7-be3ae59001ee" x="363" y="30" width="34" height="13"/>
+				<textElement/>
+				<text><![CDATA[FOLIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b9a49b10-086f-4872-a1bd-50f8c1f9816e" x="466" y="28" width="89" height="18"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fol_rec}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d3c1d189-d5c4-4a64-b904-92c5966ec071" mode="Opaque" x="499" y="0" width="56" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8845c639-7f3e-452f-bf6c-c74bce5a7b21" mode="Opaque" x="363" y="0" width="136" height="13" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+"     /"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="db932e42-bb6c-4073-b452-1ac2d5e438b9" x="0" y="74" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="bb3e1504-4e96-45f2-b038-566cc43a3427" x="75" y="55" width="322" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nom_com}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="24a29a0c-c2c7-41e7-8d9b-ea46f041dbf2" x="0" y="75" width="47" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CLAVE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="19384881-07cb-4ba9-bfd0-4aca19ce7e21" x="116" y="75" width="72" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1847bc0a-2e12-4f1c-90d6-1bd46a7ddd54" x="303" y="75" width="39" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LOTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8055a0ed-42b0-47eb-bb90-a0c7d372da76" x="359" y="75" width="64" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CADUCIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c1fcc0f-ecd5-4e7b-b7b7-d96f9ee0f97b" x="433" y="77" width="64" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SOLICITADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27f93f9a-1467-4c50-bc26-74a336b8aaab" x="520" y="75" width="48" height="13"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SURTIDA]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="cdd082ca-0817-46d4-8550-0e5475acbb62" x="0" y="90" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="e3b0cd28-96e3-4fa7-8e8f-09a7e37457cb" x="399" y="54" width="128" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="87844f75-7f08-454e-8eec-c716b4291d49" x="-1" y="0" width="76" height="55"/>
+				<imageExpression><![CDATA["C:\\Users\\Sistemas\\Documents\\GitHub\\SCR_MEDALFA\\SCR_MEDALFA\\web\\imagenes\\mlogo.png"]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<textField>
+				<reportElement uuid="a6bbe99c-0117-4c0f-a1cf-afeb44cff9d9" x="2" y="0" width="100" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cla_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b7335137-20b7-4305-998d-61f1eaeea178" x="94" y="0" width="170" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{des_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="00f89931-6f4e-499a-88c4-4c574369263e" x="303" y="0" width="73" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="458fe8e1-acd9-4998-a375-f731fc11420d" x="359" y="0" width="74" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{caducidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4f421224-e403-4436-85ec-a8db241619a7" x="504" y="0" width="64" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cant_sur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7f31b657-51d5-4f71-95d9-43987de888d3" x="433" y="0" width="62" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{can_sol}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="75ea4cd0-82fb-4bac-bae4-408c235dd3f8" x="0" y="12" width="572" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

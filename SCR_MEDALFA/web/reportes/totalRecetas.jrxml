@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="totalRecetas" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7e42d481-226f-4a7b-934f-ae1fd0550cd2">
+	<property name="ireport.zoom" value="5.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_origen" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="unidad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hora_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hora_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_tip" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select @rownum:=@rownum+1 as renglon, fol_Rec, count(fol_Rec) as countes from receta_reportes, (SELECT @rownum:=0) r where id_ori = $P{id_origen} and des_uni = $P{unidad} and fecha_hora between $P{hora_ini} and $P{hora_fin} and id_tip = $P{id_tip} group by fol_rec order by renglon desc limit 1;]]>
+	</queryString>
+	<field name="renglon" class="java.lang.Double"/>
+	<field name="fol_rec" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="countes" class="java.lang.Long"/>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="130bb228-e5fb-4dbd-82d1-298c598cc142" x="0" y="0" width="100" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recetas totales:]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement uuid="8d678300-730d-437d-91bb-c78348fdd426" x="100" y="0" width="100" height="10"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{renglon}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecetaTicket" language="groovy" pageWidth="226" pageHeight="841" columnWidth="225" leftMargin="0" rightMargin="1" topMargin="0" bottomMargin="0" uuid="b8d4bc80-f71a-4086-bb5c-a93eba15789d">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="folio" class="java.lang.String"/>
+	<parameter name="NomUsu" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from recetas where fol_rec=$P{folio}]]>
+	</queryString>
+	<field name="fol_det" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fol_rec" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_com" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_hora" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="can_sol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_sur" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transito" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_rec" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="baja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lote" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="caducidad" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cause" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cedula" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rfc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="expe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="afi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechan" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="isem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="juris" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla_uni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="domic" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_tip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="det_pro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fec_sur" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_ori" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clavepro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lotepro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="113">
+			<staticText>
+				<reportElement uuid="a93b9779-4e13-48bf-b89a-5203173eaac5" x="0" y="53" width="51" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FOLIO: RF -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="643341a8-15ee-4b54-b993-e415dc2540a6" x="0" y="71" width="68" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[BENEFICIARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb9d4e6f-2a93-4e1a-a68e-805c483efab2" x="150" y="42" width="54" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha y Hora]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5b44c67b-778e-46ba-87b0-cdc92ecd26e9" x="0" y="23" width="207" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="248f77c1-b814-4d63-b938-7e4a3afd0107" x="68" y="71" width="139" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_com}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="644db2c6-c20a-4fdf-84cb-ad9d5e708a40" x="123" y="53" width="81" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8cc58259-fa86-4f4b-86f4-28d1abefb5e9" x="76" y="53" width="62" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fol_rec}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="75dd49c9-973d-4495-ad9b-a166684bc9d8" x="63" y="0" width="88" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MEDALFA S.A. DE C.V.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bae47296-6307-4b63-b02b-60af04f3da10" x="58" y="12" width="98" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[SANTA FE, MÉXICO D.F.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="7ec06cf5-2c84-4d7e-9bdb-d5bf2aabb5bd" x="0" y="39" width="225" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="84926a1d-8993-4405-afca-f50a63889c81" x="47" y="53" width="25" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cla_uni}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2b50f547-77d0-448a-9eef-7ef564a55480" x="68" y="53" width="8" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ef4a4dd4-b503-49ce-b8c4-b085ee6e6c35" x="1" y="87" width="43" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[RECETA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5d13e1d5-a8fa-45d4-9929-0a605e745482" x="51" y="87" width="41" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fol_rec}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d6d92e84-0c18-49eb-9280-15c3cad5644f" x="0" y="98" width="68" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA RECETA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9a4f8438-18c2-4a79-9e25-4b6798850964" x="68" y="98" width="45" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fec_sur}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="b009b964-7924-4d33-abd0-14fc794cc59f" x="1" y="111" width="224" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12">
+			<staticText>
+				<reportElement uuid="dc0d7b65-fe1b-4860-88f3-79bcfa2fde8d" x="17" y="1" width="66" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b62d8d3a-e1a5-487e-b5af-94b0818401fb" x="123" y="1" width="41" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da387cbe-cba0-44df-b9c4-a8fb660b6c39" x="170" y="1" width="37" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ORIGEN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43">
+			<textField>
+				<reportElement uuid="c02cc56d-028e-4c8d-a413-01b8d391719e" x="138" y="1" width="26" height="13"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cant_sur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e9340435-e684-401a-b09d-d4037fb6cd59" x="182" y="1" width="25" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_ori}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1190970c-c7e2-4361-91bd-508857daeb4f" x="0" y="1" width="123" height="30"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clavepro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="12ead9d7-c747-411c-8265-28628bee1499" x="0" y="30" width="204" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lotepro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band height="72">
+			<staticText>
+				<reportElement uuid="0d4f2d6f-b3ca-40cb-8fa5-853ac60e3a22" x="68" y="9" width="74" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FIRMA DE RECIBO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9de828cd-5a1e-4e97-8d07-a3ecc35830e9" x="2" y="22" width="68" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ENCARGADO(A):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6371682f-2ba6-4221-a274-8e06156980f9" x="1" y="41" width="91" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE IMPRECIÓN:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="e4ecc1e2-1737-4db8-bfa1-bb836a587018" x="41" y="55" width="129" height="16"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{fol_rec}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement uuid="54c545e1-f100-4ddd-9594-28e4c3e6e108" x="98" y="41" width="106" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="15a8a1bf-d055-435b-b9f5-ed34b0df436c" x="73" y="22" width="134" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NomUsu}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="97c0a5a5-78cf-44fb-8d18-18b3d4d18d7a" x="0" y="0" width="225" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etiquetasReceta" language="groovy" pageWidth="288" pageHeight="144" orientation="Landscape" columnWidth="274" leftMargin="7" rightMargin="7" topMargin="7" bottomMargin="7" uuid="dc61bdcc-24cb-43a0-a0d1-827f3c1e805d">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fol_rec" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from recetas where fol_rec = $P{fol_rec} group by id_rec;]]>
+	</queryString>
+	<field name="fol_det" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fol_rec" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_com" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_hora" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="can_sol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_sur" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transito" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_rec" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="baja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e21ac191-32e2-40a3-a306-55bee23070f2" x="33" y="0" width="201" height="13"/>
+				<textElement/>
+				<text><![CDATA[HOSPITAL GENERAL 450 DURANGO DGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11f4f532-a7a8-4852-bc2d-3a15ec4d591a" x="2" y="13" width="69" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[No. de Receta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="be51ed76-ee08-4abc-a520-23e7a4a79b41" x="203" y="13" width="71" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha y Hora]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="3ca2245e-3dc2-4bad-bbfa-504e00d07f9c" x="203" y="28" width="71" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="efe7a05e-5a02-49d5-8457-6ca3330ec78a" x="2" y="42" width="46" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9a902108-f4bc-4f6b-ad08-189173b2f666" x="48" y="42" width="226" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_com}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e7c4ad07-6a39-43b0-9f5f-b6a61e826e60" x="2" y="28" width="100" height="14"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fol_rec}]]></textFieldExpression>
+			</textField>
+			<textField hyperlinkType="Reference">
+				<reportElement uuid="1f2be7c2-f3a6-4cdc-82c9-2debd7aca4f3" x="23" y="0" width="10" height="11"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*"]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://localhost:8089/SCR/receta/receta_farmacia.jsp"]]></hyperlinkReferenceExpression>
+				<hyperlinkParameter name="report">
+					<hyperlinkParameterExpression><![CDATA["farmacia/modFarmacia.jsp"]]></hyperlinkParameterExpression>
+				</hyperlinkParameter>
+			</textField>
+			<componentElement>
+				<reportElement uuid="f7b82b69-5895-46b4-b3cf-fcb3d703cc33" x="33" y="70" width="200" height="50"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{fol_rec}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="9b9089ed-72aa-41a4-8982-0f5324dcf805" x="2" y="56" width="46" height="14"/>
+				<textElement/>
+				<text><![CDATA[Médico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1d3abb78-a934-40b4-981a-28dc96c2e934" x="48" y="56" width="226" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

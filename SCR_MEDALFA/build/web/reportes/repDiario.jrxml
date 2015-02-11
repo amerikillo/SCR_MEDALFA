@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repDiario" language="groovy" pageWidth="612" pageHeight="792" columnWidth="602" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="f7e2e74e-afeb-48a6-972c-02594a5ab37c">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="457"/>
+	<property name="ireport.y" value="4"/>
+	<property name="ireport.callouts" value="##Mon Jun 09 17:27:33 CDT 2014"/>
+	<parameter name="id_origen" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="unidad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hora_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hora_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_tip" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/Users/Amerikillo/GitHub/SIALSS/SIALSS/web/reportes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select rp.* from receta_reportes rp where id_ori = $P{id_origen} and des_uni = $P{unidad} and fecha_hora between $P{hora_ini} and $P{hora_fin} and id_tip = $P{id_tip} order by cla_pro;]]>
+	</queryString>
+	<field name="cla_uni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_uni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_rec" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fol_rec" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_tip" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cedula" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_afi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_com" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cla_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amp_pro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pres_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lot_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cad_pro" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="can_sol" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_sur" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="des_ori" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_ori" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_hora" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="can_sol_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{can_sol}]]></variableExpression>
+	</variable>
+	<variable name="cant_sur_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cant_sur}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f523df2d-5c14-44dc-9166-5f73f11411ba" x="154" y="0" width="262" height="58"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[GOBIERNO DEL ESTADO DE DURANGO
+SECRETARÍA DE SALUD
+TIENDAS SORIANA S.A DE C.V
+REPORTE DETALLADO DE CONSUMO POR RECETA
+UNIDAD:
+
+PERIODO:
+
+CONSULTA EXTERNA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2190259b-d519-4791-9439-2f3c281d465a" x="233" y="35" width="100" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{unidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="7ec2ce90-92b2-46c4-943b-7b04e33c4998" x="203" y="49" width="71" height="9"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hora_ini}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="85d7b078-3a1e-4aff-9069-0c964d45b39b" x="290" y="49" width="74" height="8"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hora_fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6739f236-7de5-43fb-aa23-8170d14895c1" x="9" y="0" width="44" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="33c92c77-aafd-45a5-8b34-03fb59397f19" x="53" y="0" width="32" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cef2b691-af55-40e9-9bc6-7ec3d0b62fd0" x="85" y="0" width="100" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Médico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad58c7ee-5453-4577-9df2-57821fed56ac" x="285" y="0" width="64" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Clave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c1eaa3c6-6f7f-4069-84ef-3c6f109de0f2" x="349" y="0" width="100" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d4a5b1b9-5ee6-48e7-b83c-399194faaddc" x="449" y="0" width="16" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Cant Sol]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f2662c37-d1c4-46b5-8974-d9833e358f69" x="475" y="0" width="17" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Cant Sur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4e832aba-9409-4159-81a6-782f2cf6c1f4" x="497" y="0" width="21" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Amp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="13f9be14-da7f-4be9-80e1-d7eacb452940" x="185" y="0" width="100" height="13"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[nom_com]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="231976a5-6e15-4b8d-875d-e589b19feaf3" x="0" y="19" width="601" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="a7602bff-4534-4771-b850-096e45d8425d" x="518" y="0" width="25" height="19"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Cajas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="08d6672d-9cb9-483c-91e8-35478340f65e" x="9" y="0" width="44" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="17537901-1b1b-475e-ab53-85b0a2e9e3ba" x="285" y="0" width="64" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cla_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2185624c-6412-4dcc-b5fd-9c1ea4f06e52" x="349" y="0" width="100" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{des_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b49fdf3f-e2c4-4dc7-ab0b-3423befa3923" x="475" y="0" width="22" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cant_sur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="349a2aa5-f4b4-43ce-9a77-d231f5fac86e" x="449" y="0" width="26" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{can_sol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3ab955a1-98c4-4509-8169-870c945331dc" x="185" y="0" width="100" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_com}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72ae3ada-8f59-4a92-a1fb-57cc4da8fbca" x="53" y="0" width="32" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fol_rec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="511b3548-d353-4c31-a078-cc8bd6222179" x="85" y="0" width="100" height="15"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="89810a39-5d02-4f64-901b-f2a1cfb164d5" x="497" y="0" width="21" height="15"/>
+				<subreportParameter name="clave">
+					<subreportParameterExpression><![CDATA[$F{cla_pro}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "presentacionClave.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="0e6e6c67-4383-435e-a168-4b696917ac87" x="518" y="0" width="25" height="15"/>
+				<subreportParameter name="clave">
+					<subreportParameterExpression><![CDATA[$F{cla_pro}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cant_sur">
+					<subreportParameterExpression><![CDATA[$F{cant_sur}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Cajas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement uuid="05707169-5183-4885-9a3b-937622834fba" x="449" y="0" width="26" height="10"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{can_sol_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="53f62d0f-5388-4cde-bb33-4d7b252a29d4" x="366" y="0" width="76" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="daf42814-5921-408b-addb-ba688fb58963" x="475" y="0" width="22" height="10"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{cant_sur_1}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="034c79cc-5197-477c-892f-a0feddbbdf38" x="268" y="10" width="121" height="10"/>
+				<subreportParameter name="id_origen">
+					<subreportParameterExpression><![CDATA[$P{id_origen}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="unidad">
+					<subreportParameterExpression><![CDATA[$P{unidad}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hora_ini">
+					<subreportParameterExpression><![CDATA[$P{hora_ini}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="hora_fin">
+					<subreportParameterExpression><![CDATA[$P{hora_fin}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="id_tip">
+					<subreportParameterExpression><![CDATA[$P{id_tip}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "totalRecetas.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="15c82d9c-eb97-4448-920d-0eb7c1cb0b8a" x="389" y="12" width="100" height="10"/>
+				<textElement textAlignment="Right">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Piezas Dispensadas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f13622a4-0215-4cb3-96fa-d2b879cafcb8" x="489" y="12" width="43" height="10"/>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{cant_sur_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
