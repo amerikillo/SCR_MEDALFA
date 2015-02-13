@@ -41,3 +41,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.class
+
+/SCR_MEDALFA/build
+/SCR_MEDALFA/dist
+
+
+SCR_MEDALFA/build
+SCR_MEDALFA/dist

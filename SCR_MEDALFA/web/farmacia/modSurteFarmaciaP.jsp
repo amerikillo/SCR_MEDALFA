@@ -42,7 +42,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="../css/pie-pagina.css" rel="stylesheet" media="screen">
         <link href="../css/topPadding.css" rel="stylesheet">
+        <link href="../css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <title>Sistema de Captura de Receta</title>
     </head>
@@ -120,7 +122,7 @@
                                     Por Folio:
                                     <input type="text" class="form-control" name="fol_rec" />
                                     Por Nombre de Derechohabiente:
-                                    <input type="text" class="form-control" name="nom_pac" />
+                                    <input type="text" onkeypress="return tabular(event, this);" placeholder="Derechohabiente" class="form-control" name="nom_pac" id="nom_pac" autofocus />
                                     <button class="btn btn-success btn-block" type="submit">Buscar</button>
                                     <button class="btn btn-warning btn-block" type="submit">Todas</button>
                                     <button class="btn btn-info btn-block" type="submit">Actualizar</button>
@@ -237,6 +239,46 @@
     <!-- Se debe de seguir ese orden al momento de llamar los JS -->
     <script src="../js/jquery-1.9.1.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+    $("#nom_pac").keyup(function() {
+        var nombre2 = $("#nom_pac").val();
+        $("#nom_pac").autocomplete({
+        source: "../AutoPacientes?nombre=" + nombre2,
+        minLength: 2,
+        select: function(event, ui) {
+            $("#nom_pac").val(ui.item.nom_com);
+            return false;
+          }
+        }).data("ui-autocomplete")._renderItem = function(ul, item) {
+        return $("<li>")
+            .data("ui-autocomplete-item", item)
+            .append("<a>" + item.nom_com + "</a>")
+            .appendTo(ul);
+        };
+    });
+});
+  
+  function tabular(e, obj){
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla !== 13)
+        return;
+    frm = obj.form;
+    for (i = 0; i < frm.elements.length; i++)
+        if (frm.elements[i] === obj)
+        {
+            if (i === frm.elements.length - 1)
+                i = -1;
+            break
+        }
+    /*ACA ESTA EL CAMBIO*/
+    if (frm.elements[i + 1].disabled === true)
+        tabular(e, frm.elements[i + 1]);
+    else
+        frm.elements[i + 1].focus();
+    return false;
+}
+    </script>
 </html>
 

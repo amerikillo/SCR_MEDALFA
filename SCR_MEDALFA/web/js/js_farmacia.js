@@ -182,6 +182,7 @@ $(function() {
             var fol_det = json[i].fol_det;
             var can_sol = json[i].can_sol;
             var cant_sur = json[i].cant_sur;
+            var id_ori = json[i].id_ori;
             var btn_modi = "<a class='btn btn-warning' id='btn_modi' value = '" + fol_det + "' name = 'btn_modi'  data-toggle=\'modal\'  href=\'#edita_clave_" + fol_det + "\'><span class='glyphicon glyphicon-pencil' ></span></a>";
             var btn_eliminar = "<a class='btn btn-danger' id='btn_eli' value = '" + fol_det + "' name = 'btn_eli' data-toggle=\'modal\'  href=\'#elimina_clave_" + fol_det + "\'><span class='glyphicon glyphicon-remove' ></span></a>";
             $("#tablaMedicamentos").append(
@@ -192,6 +193,7 @@ $(function() {
                     .append($("<td>").append(cad_pro))
                     .append($("<td>").append(can_sol))
                     .append($("<td>").append(cant_sur))
+                    .append($("<td>").append(id_ori))
                     .append($("<td>").append(btn_modi).append(btn_eliminar))
                     );
         }

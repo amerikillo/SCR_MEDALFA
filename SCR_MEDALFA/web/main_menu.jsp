@@ -49,6 +49,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Receta Electr&oacute;nica <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="receta/receta_farmacia.jsp">Captura de Receta</a></li>
+                            <li><a href="receta/reimpresion_ticket.jsp">Reimpresión Ticket</a></li>
                             
                         </ul>
                     </li>

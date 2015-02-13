@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Autocomplete;
 
 import Clases.ConectionDB;
@@ -49,20 +48,23 @@ public class AutoMedico extends HttpServlet {
 
         try {
             con.conectar();
+            ResultSet rset = con.consulta("SELECT cedula, nom_med FROM medicos WHERE nom_med like '%" + request.getParameter("nombre") + "%' limit 0,10");
+            ResultSet rset2 = con.consulta("SELECT cedula, nom_med FROM medicos WHERE nom_med like '%" + request.getParameter("nombre") + "%' limit 0,10");
             try {
-                ResultSet rset = con.consulta("SELECT cedula,nom_com FROM medicos WHERE nom_com like '%"+request.getParameter("nombre")+"%' limit 0,10");
-                while (rset.next()) {
-                    json.put("id_pac", rset.getString("cedula"));
-                    json.put("nom_com", rset.getString("nom_com"));
+                while (rset2.next()) {
+                    json.put("cedula", rset2.getString("cedula"));
+                    json.put("nom_med", rset2.getString("nom_med"));
                     jsona.add(json);
                     json = new JSONObject();
                 }
                 out.println(jsona);
                 System.out.println(jsona);
             } catch (SQLException e) {
+                System.out.println(e.getMessage());
             }
             con.cierraConexion();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 

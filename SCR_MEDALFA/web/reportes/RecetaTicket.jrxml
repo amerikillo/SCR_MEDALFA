@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RecetaTicket" language="groovy" pageWidth="226" pageHeight="841" columnWidth="225" leftMargin="0" rightMargin="1" topMargin="0" bottomMargin="0" uuid="b8d4bc80-f71a-4086-bb5c-a93eba15789d">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="134"/>
 	<parameter name="folio" class="java.lang.String"/>
 	<parameter name="NomUsu" class="java.lang.String"/>
 	<queryString>
@@ -309,8 +309,8 @@
 				<text><![CDATA[FECHA DE IMPRECIÓN:]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement uuid="e4ecc1e2-1737-4db8-bfa1-bb836a587018" x="41" y="55" width="129" height="16"/>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+				<reportElement uuid="e4ecc1e2-1737-4db8-bfa1-bb836a587018" x="41" y="53" width="129" height="19"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$F{fol_rec}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>

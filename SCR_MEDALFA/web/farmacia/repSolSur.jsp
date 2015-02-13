@@ -71,11 +71,11 @@
                     <div class="row">
                         <label class="control-label col-lg-1" for="hora_ini">Fecha Inicio:</label>
                         <div class="col-lg-2">
-                            <input class="form-control" id="hora_ini" name="hora_ini" type="date" />
+                            <input class="form-control" id="hora_ini" name="hora_ini" />
                         </div>
                         <label class="control-label col-lg-1" for="hora_fin">Fecha Fin:</label>
                         <div class="col-lg-2">
-                            <input class="form-control" id="hora_fin" name="hora_fin" type="date" />
+                            <input class="form-control" id="hora_fin" name="hora_fin" />
                         </div>                        
                         <div class="col-lg-1">
                         </div>
@@ -109,8 +109,8 @@
     <script src="../js/bootstrap-datepicker.js"></script>
     <script>
 
-                               // $("#hora_ini").datepicker({minDate: 0});
-                               // $("#hora_fin").datepicker({minDate: 0});
+                                $("#hora_ini").datepicker({minDate: 0});
+                                $("#hora_fin").datepicker({minDate: 0});
 
                                 function validaReporte() {
                                     //var unidad = document.getElementById("unidad").value;

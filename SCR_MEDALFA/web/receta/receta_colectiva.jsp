@@ -39,13 +39,13 @@
     } catch (Exception e) {
     }
 
-    String folio_rec = "", nom_com = "", sexo = "", fec_nac = "", num_afi = "", carnet = "", id_rec = "";
+    String folio_rec = "", nom_com = "", sexo = "", servicio = "", num_afi = "", carnet = "", id_rec = "",NombreUsu="";
     try {
         folio_rec = (String) sesion.getAttribute("folio_rec");
-        nom_com = (String) sesion.getAttribute("nom_com");
-        sexo = (String) sesion.getAttribute("sexo");
-        
-        
+        nom_com = (String) sesion.getAttribute("nom_med");
+        sexo = (String) sesion.getAttribute("cedula");
+        servicio = (String) sesion.getAttribute("id_ser");
+
         try {
             con.conectar();
             ResultSet rset = con.consulta("select carnet, id_rec from receta where fol_rec = '" + folio_rec + "'");
@@ -64,30 +64,39 @@
         System.out.println("folio vacio o null*" + folio_rec);
         folio_rec = "";
         nom_com = "";
-        sexo = "";        
+        sexo = "";
     }
-    
 
-/*
+
+    /*
+     try {
+     if (request.getParameter("accion").equals("nueva2")) {
+     System.out.println("folio nuevo*" + folio_rec);
+     folio_rec = "";
+     nom_com = "";
+     sexo = "";
+     fec_nac = "";
+     num_afi = "";
+
+     sesion.setAttribute("folio_rec", "");
+     sesion.setAttribute("nom_com", "");
+     sesion.setAttribute("sexo", "");
+     sesion.setAttribute("fec_nac", "");
+     sesion.setAttribute("num_afi", "");
+     }
+     } catch (Exception e) {
+
+     }
+     */
     try {
-        if (request.getParameter("accion").equals("nueva2")) {
-            System.out.println("folio nuevo*" + folio_rec);
-            folio_rec = "";
-            nom_com = "";
-            sexo = "";
-            fec_nac = "";
-            num_afi = "";
-
-            sesion.setAttribute("folio_rec", "");
-            sesion.setAttribute("nom_com", "");
-            sesion.setAttribute("sexo", "");
-            sesion.setAttribute("fec_nac", "");
-            sesion.setAttribute("num_afi", "");
+        con.conectar();
+        ResultSet RsetUsu = con.consulta("SELECT nombre FROM usuarios WHERE id_usu='"+id_usu+"'");
+        if(RsetUsu.next()){
+            NombreUsu = RsetUsu.getString(1);
         }
-    } catch (Exception e) {
-
+        con.cierraConexion();
+    }catch(Exception ex){
     }
-*/
 %>
 <%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyyMMddhhmmss"); %>
 <%java.text.DateFormat df2 = new java.text.SimpleDateFormat("yyyy-MM-dd"); %>
@@ -134,10 +143,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agenda<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="verAgenda.jsp">Ver Agenda</a></li>
-                            <!--li class="divider"></li>
-                            <li><a href="#rf">Reimpresión de Comprobantes</a></li>
-                        </ul>
-                    </li-->
+                    <!--li class="divider"></li>
+                    <li><a href="#rf">Reimpresión de Comprobantes</a></li>
+                </ul>
+            </li-->
                     <%
                     } else {
                     %>
@@ -181,7 +190,7 @@
                             <li><a href="#rf">Reimpresión de Comprobantes</a></li-->
                         </ul>
                     </li>
-                    
+
                     <%
                             }
                         } catch (Exception e) {
@@ -216,10 +225,6 @@
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" id="medico" readonly name="medico" placeholder="" value="<%=medico%>"/>
                                 </div>
-                                <label for="fecha" class="col-sm-1 control-label"> Cédula:</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" id="cedula" readonly name="cedula" placeholder="" value="<%=cedula%>"/>
-                                </div>
                             </div>
                             <br />
                             <div class="row">
@@ -237,12 +242,12 @@
                         </div>
                         <div class="panel-footer">                                                        
                             <div class="row">
-                                <label for="nombre_jq" class="col-sm-2 control-label">
+                                <label for="medico_jq" class="col-sm-2 control-label">
                                     <button type="button" class="btn btn-default" data-placement="left" data-toggle="tooltip" data-placement="left" title="Buscar Médico por su nombre" id="bus_pacn"><span class="glyphicon glyphicon-search"></span></button>
                                     Nombre
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="nombre_jq" name="nombre_jq" placeholder="Nombre" onkeypress="return tabular(event, this);" autofocus value="<%=nom_com%>">
+                                    <input type="text" class="form-control" id="medico_jq" name="medico_jq" placeholder="Médico" onkeypress="return tabular(event, this);" autofocus value="<%=nom_com%>">
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-block btn-primary" name="mostrar2" id="mostrar2">Mostrar</button>
@@ -252,12 +257,43 @@
                             <div class="row">
                                 <label for="nom_pac" class="col-sm-1 control-label">Médico</label>
                                 <div class="col-sm-4">
-                                    <input name="nom_pac" type="text" class="form-control" id="nom_pac" placeholder="Paciente"  value="<%=nom_com%>" readonly/>
+                                    <input name="nom_med" type="text" class="form-control" id="nom_med" placeholder="Médico"  value="<%=nom_com%>" readonly/>
                                 </div>
-                                <label for="sexo" class="col-sm-1 control-label">Id</label>
+                                <label for="sexo" class="col-sm-1 control-label">Cédula</label>
                                 <div class="col-sm-2">
-                                    <input name="sexo" type="text" class="form-control" id="sexo" placeholder="Sexo"  value="<%=sexo%>" readonly/>
+                                    <input name="cedula" type="text" class="form-control" id="ced_med" placeholder="Cédula"  value="<%=sexo%>" readonly/>
                                 </div>                                
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <label class="col-sm-1">Servicio:</label>
+                                <div class="col-sm-11">
+                                    <select class="form-control" name="id_ser" id="listServicios">
+                                        <option value="">--Servicio--</option>
+                                        <%
+                                            try {
+                                                con.conectar();
+                                                ResultSet rset = con.consulta("select id_ser, nom_ser from servicios where id_ser!=1");
+                                                while (rset.next()) {
+                                        %>
+                                        <option value="<%=rset.getString("id_ser")%>"
+                                                <%
+                                                    if (servicio != null) {
+                                                        if (servicio.equals(rset.getString("id_ser"))) {
+                                                            out.print("selected");
+                                                        }
+                                                    }
+                                                %>
+                                                ><%=rset.getString("nom_ser")%></option>
+                                        <%
+                                                }
+                                                con.cierraConexion();
+                                            } catch (Exception e) {
+
+                                            }
+                                        %>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -303,7 +339,7 @@
                                 </div>
                             </div>
                             <br>
-                            
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <table align="center">
@@ -343,29 +379,29 @@
 
                         </div>
                     </form>
-                    <form class="form-horizontal" name="form" id="form" method="get" action="../RecetaNueva2">            
-                    <!--form method="post"-->
+                    <form class="form-horizontal" name="form" id="form" method="get" action="../RecetaNueva2?">            
+                        <!--form method="post"-->
                         <div class="panel-footer">
                             <div class="row" id="tablaBotones">
                                 <div class="col-lg-6"></div>
                                 <div class="col-lg-3">
                                     <!--button class="btn btn-warning btn-block" name="accion" value="nueva2" type="submit">Nueva Receta</button-->
-                                    <button class="btn btn-block btn-primary" name="btn_nueva" value="2" id="btn_clave">Nueva Receta</button>
+                                    <button class="btn btn-block btn-primary" name="btn_nueva" value="2" id="btnCap">Finalizar Receta</button>
                                 </div>
                                 <%
-                                  /*  int ban_imp = 0;
-                                    try {
-                                        con.conectar();
-                                        //ResultSet rset = con.consulta("select fol_det from recetas where fol_rec = '" + folio_rec + "' and cant_sur!=0 ");
-                                        ResultSet rset = con.consulta("select fol_det from recetas where fol_rec = '" + folio_rec + "' ");
-                                        while (rset.next()) {
-                                            ban_imp = 1;
-                                        }
-                                        con.cierraConexion();
-                                    } catch (Exception e) {
-                                        System.out.println(e.getMessage());
-                                    }
-                                    if (ban_imp == 1) {*/
+                                    /*  int ban_imp = 0;
+                                     try {
+                                     con.conectar();
+                                     //ResultSet rset = con.consulta("select fol_det from recetas where fol_rec = '" + folio_rec + "' and cant_sur!=0 ");
+                                     ResultSet rset = con.consulta("select fol_det from recetas where fol_rec = '" + folio_rec + "' ");
+                                     while (rset.next()) {
+                                     ban_imp = 1;
+                                     }
+                                     con.cierraConexion();
+                                     } catch (Exception e) {
+                                     System.out.println(e.getMessage());
+                                     }
+                                     if (ban_imp == 1) {*/
                                 %>
                                 <!--div class="col-lg-3">
                                     <a class="btn btn-success btn-block" href="../reportes/TicketFolio.jsp?fol_rec=<%=folio_rec%>">Imprimir Comprobante</a>
@@ -390,7 +426,7 @@
                 ResultSet rset = con.consulta("select dr.fol_det, dr.can_sol, dr.cant_sur, dp.cla_pro, p.des_pro from detreceta dr, detalle_productos dp, productos p where dr.det_pro = dp.det_pro and dp.cla_pro = p.cla_pro and id_rec = '" + id_rec + "' ");
                 while (rset.next()) {
                     //System.out.println(rset.getString("fol_det"));
-%>
+        %>
         <div class="modal fade" id="edita_clave_<%=rset.getString("fol_det")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -445,45 +481,41 @@
             } catch (Exception e) {
             }
         %>
+        <!-- 
+            ================================================== -->
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+        <script src="../js/jquery-1.9.1.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/jquery-ui.js"></script>
+        <!--script src="../js/bootstrap-datepicker.js"></script-->
+        <script src="../js/js_colectiva.js"></script>
+        <script>
 
-    </body>
-
-
-    <!-- 
-    ================================================== -->
-    <!-- Se coloca al final del documento para que cargue mas rapido -->
-    <!-- Se debe de seguir ese orden al momento de llamar los JS -->
-    <script src="../js/jquery-1.9.1.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <!--script src="../js/bootstrap-datepicker.js"></script-->
-    <script src="../js/js_colectiva.js"></script>
-    <script>
-
-                                                $('#tablaMedicamento').load('receta_Farmacia.jsp #tablaMedicamento');
-                                                $('#tablaBotones').load('receta_Farmacia.jsp #tablaBotones');
+                                                //$('#tablaMedicamento').load('receta_Farmacia.jsp #tablaMedicamento');
+                                                //$('#tablaBotones').load('receta_Farmacia.jsp #tablaBotones');
                                                 /*
                                                  * 
                                                  * @returns {undefined}
                                                  */
                                                 $(function() {
                                                     var availableTags = [
-        <%
-            try {
-                con.conectar();
+            <%
                 try {
-                    ResultSet rset = con.consulta("select des_cau from causes");
-                    while (rset.next()) {
-                        out.println("'" + rset.getString(1) + "',");
+                    con.conectar();
+                    try {
+                        ResultSet rset = con.consulta("select des_cau from causes");
+                        while (rset.next()) {
+                            out.println("'" + rset.getString(1) + "',");
+                        }
+                    } catch (Exception e) {
+
                     }
+                    con.cierraConexion();
                 } catch (Exception e) {
 
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-
-            }
-        %>
+            %>
                                                     ];
                                                     $("#causes").autocomplete({
                                                         source: availableTags
@@ -491,22 +523,22 @@
                                                 });
                                                 $(function() {
                                                     var availableTags = [
-        <%
-            try {
-                con.conectar();
+            <%
                 try {
-                    ResultSet rset = con.consulta("select des_pro from productos");
-                    while (rset.next()) {
-                        out.println("'" + rset.getString(1) + "',");
+                    con.conectar();
+                    try {
+                        ResultSet rset = con.consulta("select des_pro from productos");
+                        while (rset.next()) {
+                            out.println("'" + rset.getString(1) + "',");
+                        }
+                    } catch (Exception e) {
+
                     }
+                    con.cierraConexion();
                 } catch (Exception e) {
 
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-
-            }
-        %>
+            %>
                                                     ];
                                                     $("#des_pro").autocomplete({
                                                         source: availableTags
@@ -516,12 +548,12 @@
 
 
                                                 $(document).ready(function() {
-        <%
-            try {
-                con.conectar();
-                ResultSet rset = con.consulta("select fol_det from detreceta where id_rec = '" + id_rec + "' ");
-                while (rset.next()) {
-                    //System.out.println(rset.getString("fol_det"));
+            <%
+                try {
+                    con.conectar();
+                    ResultSet rset = con.consulta("select fol_det from detreceta where id_rec = '" + id_rec + "' ");
+                    while (rset.next()) {
+                    //System.out.println(rset.getString("fol_    det"));
 %>
                                                     $('#btn_modificar_<%=rset.getString("fol_det")%>').click(function() {
                                                         var dir = '../EditaMedicamento';
@@ -563,16 +595,20 @@
                                                         });
                                                         location.reload();
                                                     });
-        <%
+            <%
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-            }
-        %>
+            %>
 
                                                 });
-                                           
-    </script>
-    
- 
+
+        </script>
+
+    </body>
+
+
+
+
 </html>

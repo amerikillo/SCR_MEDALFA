@@ -77,8 +77,22 @@ public class RecetaNueva2 extends HttpServlet {
                 out.println("<script>window.location='receta/receta_farmacia.jsp'</script>");
                 
             }else if(ban.equals("2")){
+                try {
+                     con.conectar();
+                     ResultSet RsetUsu = con.consulta("SELECT nombre FROM usuarios WHERE id_usu='"+usuario+"'");
+                     if(RsetUsu.next()){
+                         NombreUsu = RsetUsu.getString(1);
+                     }
+                     con.cierraConexion();
+                }catch(Exception e){}
+                if(folio !=""){
+                out.println("<script>window.open('reportes/RecetaFarm.jsp?fol_rec="+folio+"&tipo=4&usuario="+NombreUsu+"','', 'width=1200,height=800,left=50,top=50,toolbar=no');</script>");
+                }
                 sesion.setAttribute("folio_rec", "");
-                response.sendRedirect("receta/receta_colectiva.jsp");
+                sesion.setAttribute("cedula", "");
+                sesion.setAttribute("nom_med", "");
+                sesion.setAttribute("id_ser", "");
+                out.println("<script>window.location='receta/receta_colectiva.jsp'</script>");                
             }
 
             

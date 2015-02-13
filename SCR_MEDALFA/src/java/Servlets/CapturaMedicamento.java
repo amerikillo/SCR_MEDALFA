@@ -102,7 +102,6 @@ public class CapturaMedicamento extends HttpServlet {
                             // Contador = Contador + 1;
                             ResultSet ExisRec1 = con.consulta("SELECT SUM(can_sol) AS can_sol,SUM(cant_sur) AS can_sur FROM detreceta WHERE det_pro='" + det_pro + "' AND id_rec='" + id_rec + "' and can_sol>0 and baja=0");
                             while (ExisRec1.next()) {
-
                                 can_sol_1 = ExisRec1.getInt(1);
                             }
                             if (Contador < 4 || can_sol_1 > 0) {
@@ -161,7 +160,6 @@ public class CapturaMedicamento extends HttpServlet {
                                 }
                                 ExisRec = con.consulta("SELECT SUM(can_sol) AS can_sol,SUM(cant_sur) AS can_sur FROM detreceta WHERE det_pro='" + det_pro + "' AND id_rec='" + id_rec + "' and can_sol>0 and baja=0");
                                 while (ExisRec.next()) {
-
                                     can_sol = ExisRec.getInt(1);
                                     can_sur = ExisRec.getInt(2);
                                 }

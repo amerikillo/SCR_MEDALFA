@@ -129,6 +129,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Receta Electronica <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="receta_farmacia.jsp">Captura de Receta</a></li>
+                            <li><a href="reimpresion_ticket.jsp">Reimpresión Ticket</a></li>
                             <!--li class="dividr"></li>
                             <li><a href="#rf">Reimpresión de Comprobantes</a></li-->
                         </ul>

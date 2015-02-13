@@ -119,7 +119,7 @@
                                             LP_data();
                                             anade(this);
                                             return isNumberKey(event, this);"/-->
-                                    <input type="date" class="form-control" id="fec_nac" name="fec_nac"/>
+                                    <input class="form-control" id="fec_nac" name="fec_nac"/>
                                 </div>
                                     
                                 <label for="sexo" class="col-sm-1 control-label">Sexo</label>
@@ -268,11 +268,11 @@ function upperCase(x)
     document.getElementById("mySpan").value = y.toUpperCase();
 
 }
-
+$("#fec_nac").datepicker();
 $(function() {
-    //$("#ini_vig").datepicker();
-    //$("#fec_nac").datepicker();
-    //$("#fin_vig").datepicker();
+    $("#ini_vig").datepicker();
+    
+    $("#fin_vig").datepicker();
 });
 
 

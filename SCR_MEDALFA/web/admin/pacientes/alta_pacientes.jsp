@@ -133,7 +133,7 @@
                                             return isNumberKey(event, this);"/>
                                 </div-->
                                 <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="fec_nac" name="fec_nac"/>
+                                    <input class="form-control" id="fec_nac" name="fec_nac"/>
                                 </div>
                                 <label for="sexo" class="col-sm-1 control-label">Sexo</label>
                                 <div class="col-sm-2">
@@ -161,7 +161,7 @@
                                             return isNumberKey(event, this);"/>
                                 </div-->
                                 <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="ini_vig" name="ini_vig"/>
+                                    <input class="form-control" id="ini_vig" name="ini_vig"/>
                                 </div>
                                 <label for="fin_vig" id="fin_vig1" class="col-sm-2 control-label">Fin de Vigencia</label>
                                 <!--div class="col-sm-2">
@@ -171,7 +171,7 @@
                                             return isNumberKey(event, this);"/>
                                 </div-->
                                 <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="fin_vig" name="fin_vig"/>
+                                    <input data-date-format="dd/mm/yyyy" class="form-control" id="fin_vig" name="fin_vig"/>
                                 </div>
                             </div>
                             <br />
@@ -289,11 +289,11 @@ function upperCase(x)
     document.getElementById("mySpan").value = y.toUpperCase();
 
 }
-
+$("#fec_nac").datepicker();
 $(function() {
-    //$("#ini_vig").datepicker();
-    //$("#fec_nac").datepicker();
-    //$("#fin_vig").datepicker();
+    $("#ini_vig").datepicker();
+    
+    $("#fin_vig").datepicker();
 });
 
 

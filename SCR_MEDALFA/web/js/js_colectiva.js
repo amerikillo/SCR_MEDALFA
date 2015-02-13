@@ -11,8 +11,11 @@
  */
 
 function focoInicial() {
-    document.getElementById('nombre_jq').focus();
-    if (document.getElementById('nom_pac').value !== "") {
+    document.getElementById('medico_jq').focus();
+    if (document.getElementById('nom_med').value !== "") {
+        document.getElementById('listServicios').focus();
+    }
+    if (document.getElementById('listServicios').value !== "") {
         document.getElementById('cla_pro').focus();
     }
 }
@@ -21,7 +24,7 @@ function sumar() {
     var unidades = document.formulario_receta.unidades.value;
     if (unidades === "")
         unidades = 0;
-        
+
     //document.formulario_receta.piezas_sol.value = Math.ceil(total);
     //document.formulario_receta.can_sol.value = Math.ceil(cajas);
     document.formulario_receta.piezas_sol.value = Math.ceil(unidades);
@@ -75,6 +78,39 @@ function isNumberKey(evt, obj)
     return true;
 
 }
+$('#btn_capturar').click(function() {
+    var cla_pro = $('#cla_pro').val();
+    var des_pro = $('#des_pro').val();
+    var form = $('#formulario_receta');
+    if (cla_pro !== "" && des_pro !== "") {
+        if ($('#can_sol').val() === "") {
+            alert('Capture la cantidad a entregar');
+        } else {
+            document.getElementById('formulario_receta').action = "../CapturaMedicamentoColectivo";
+            document.getElementById('formulario_receta').submit();
+            /*$.ajax({
+             type: 'POST',
+             url: '../CapturaMedicamentoColectivo',
+             data: form.serialize(),
+             success: function(data) {
+             }
+             });
+             $.ajax({
+             type: form.attr('method'),
+             url: '../MuestraInsumosRecetaColectivo',
+             data: form.serialize(),
+             success: function(data) {
+             limpiaCampos();
+             hacerTabla(data);
+             }
+             });*/
+        }
+    }
+    else {
+        alert("Capture primero el medicamento");
+        $("#des_pro").focus();
+    }
+});
 
 /*if(document.getElementById('nom_pac').val!==""){
  document.getElementById('carnet').focus();
@@ -84,20 +120,22 @@ function isNumberKey(evt, obj)
  }*/
 $(function() {
 
+
+
     $(function() {
-        $("#nombre_jq").keyup(function() {
-            var nombre = $("#nombre_jq").val();
-            $("#nombre_jq").autocomplete({
+        $("#medico_jq").keyup(function() {
+            var nombre = $("#medico_jq").val();
+            $("#medico_jq").autocomplete({
                 source: "../AutoMedico?nombre=" + nombre,
-                minLength: 2,
+                minLength: 1,
                 select: function(event, ui) {
-                    $("#nombre_jq").val(ui.item.nom_com);
+                    $("#medico_jq").val(ui.item.nom_med);
                     return false;
                 }
             }).data("ui-autocomplete")._renderItem = function(ul, item) {
                 return $("<li>")
                         .data("ui-autocomplete-item", item)
-                        .append("<a>" + item.nom_com + "</a>")
+                        .append("<a>" + item.nom_med + "</a>")
                         .appendTo(ul);
             };
         });
@@ -106,12 +144,9 @@ $(function() {
     $('#bus_pac').tooltip();
     $('#bus_pacn').tooltip();
 
-    if ($("#nom_pac").val() !== "") {
-        $("#carnet").focus();
-    }
-    if ($("#carnet").val() !== "") {
+    $("#listServicios").change(function() {
         $("#cla_pro").focus();
-    }
+    });
 
     $("#fecha").datepicker();
     $("#Caducidad").datepicker('option', {dateFormat: 'dd/mm/yy'});
@@ -184,88 +219,7 @@ $(document).ready(function() {
         var cla_pro = $('#btn_eli').val();
         alert(cla_pro);
     });
-    
-    $('#btn_capturar').click(function() {
-        var cla_pro = $('#cla_pro').val();
-        var des_pro = $('#des_pro').val();
-        var form = $('#formulario_receta');
-        if (cla_pro !== "" && des_pro !== "") {
-             if ($('#can_sol').val() === "") {
-                alert('Capture la cantidad a entregar');
-            } else {
-                $.ajax({
-                    type: 'POST',
-                    url: '../CapturaMedicamentoColectivo',
-                    data: form.serialize(),
-                    success: function(data) {
-                    }
-                });
-                $.ajax({
-                    type: form.attr('method'),
-                    url: '../MuestraInsumosRecetaColectivo',
-                    data: form.serialize(),
-                    success: function(data) {
-                        limpiaCampos();
-                        hacerTabla(data);
-                    }
-                });
-                function limpiaCampos() {
-                    $("#cla_pro").val("");
-                    $("#des_pro").val("");
-                    $("#ori1").attr("value", "");
-                    $("#ori2").attr("value", "");
-                    $("#existencias").attr("value", "");
-                    $("#indica").val("");
-                    $("#causes").val("");
-                    $("#can_sol").val("");
-                }
 
-                function hacerTabla(data) {
-                    var json = JSON.parse(data);
-                    $("#tablaMedicamentos").empty();
-                    $("#tablaMedicamentos").append(
-                            $("<tr>")
-                            .append($("<td>").append("Clave"))
-                            .append($("<td>").append("Descripción"))
-                            .append($("<td>").append("Lote"))
-                            .append($("<td>").append("Caducidad"))
-                            .append($("<td>").append("Cant. Sol."))
-                            .append($("<td>").append("Cant. Sur."))
-                            .append($("<td>").append(""))
-                            );
-                    for (var i = 0; i < json.length; i++) {
-                        var cla_pro = json[i].cla_pro;
-                        var des_pro = json[i].des_pro;
-                        var lot_pro = json[i].lot_pro;
-                        var cad_pro = json[i].cad_pro;
-                        var fol_det = json[i].fol_det;
-                        var can_sol = json[i].can_sol;
-                        var cant_sur = json[i].cant_sur;
-                        var btn_modi = "<a class='btn btn-warning' id='btn_modi' value = '" + fol_det + "' name = 'btn_modi'  data-toggle=\'modal\'  href=\'#edita_clave_" + fol_det + "\'><span class='glyphicon glyphicon-pencil' ></span></a>";
-                        var btn_eliminar = "<a class='btn btn-danger' id='btn_eli' value = '" + fol_det + "' name = 'btn_eli' data-toggle=\'modal\'  href=\'#elimina_clave_" + fol_det + "\'><span class='glyphicon glyphicon-remove' ></span></a>";
-                        $("#tablaMedicamentos").append(
-                                $("<tr>")
-                                .append($("<td>").append(cla_pro))
-                                .append($("<td>").append(des_pro))
-                                .append($("<td>").append(lot_pro))
-                                .append($("<td>").append(cad_pro))
-                                .append($("<td>").append(can_sol))
-                                .append($("<td>").append(cant_sur))
-                                .append($("<td>").append(btn_modi).append(btn_eliminar))
-                                );
-                    }
-                }
-                $('#tablaMedicamento').load('receta_Farmacia.jsp #tablaMedicamento');
-                
-                location.reload();
-                //$("#cla_pro").focus();
-            }
-        }
-        else {
-            alert("Capture primero el medicamento");
-            $("#des_pro").focus();
-        }
-    });
 
 
     $('#btn_descripcion').click(function() {
@@ -377,8 +331,8 @@ $(document).ready(function() {
                     $("#des_pro").val(descripcion);
                     $("#amp").attr("value", ampuleo);
                     $("#unidades").focus();
-                    
-                    if (descripcion === "null") {                        
+
+                    if (descripcion === "null") {
                         alert('Clave fuera de Catálogo');
                         $("#cla_pro").val("");
                         $("#des_pro").val("");
@@ -521,11 +475,11 @@ $(document).ready(function() {
             }
         }
     });
-    
-   
+
+
 
     $('#mostrar2').click(function() {
-        var sp_pac = $('#sp_pac').val();
+        var sp_pac = $('#medico_jq').val();
         var dir = '../RecetaNombreCol';
         var form = $('#formulario_receta');
         $.ajax({
@@ -544,35 +498,24 @@ $(document).ready(function() {
             for (var i = 0; i < json.length; i++) {
                 var mensaje = json[i].mensaje;
                 var fol_rec = json[i].fol_rec;
-                var nom_com = json[i].nom_com;
-                var sexo = json[i].sexo;
-                var fec_nac = json[i].fec_nac;
-                var num_afi = json[i].num_afi;
-                var carnet = json[i].carnet;
+                var nom_med = json[i].nom_med;
+                var cedula = json[i].cedula;
+
                 $("#folio").val(fol_rec);
-                $("#nom_pac").val(nom_com);
-                $("#sexo").val(sexo);
-                $("#fec_nac").val(fec_nac);
-                $("#fol_sp").val(num_afi);
-                $("#carnet").val(carnet);
-                $("#cla_pro").focus();
+                $("#nom_med").val(nom_med);
+                $("#ced_med").val(cedula);
+                $("#listServicios").focus();
                 if (mensaje === "vig_no_val") {
-                    $("#nom_pac").val("");
-                    $("#sexo").val("");
-                    $("#fec_nac").val("");
-                    $("#fol_sp").val("");
-                    $("#nombre_jq").val("");
-                    $("#nombre_jq").focus();
+                    $("#nom_med").val("");
+                    $("#ced_med").val("");
+                    $("#medico_jq").focus();
                     alert("Vigencia no valida");
                 }
                 if (mensaje === "inexistente") {
-                    alert("Paciente Inexistente");
-                    $("#nom_pac").val("");
-                    $("#sexo").val("");
-                    $("#fec_nac").val("");
-                    $("#fol_sp").val("");
-                    $("#nombre_jq").val("");
-                    $("#nombre_jq").focus();
+                    alert("Médico Inexistente");
+                    $("#nom_med").val("");
+                    $("#ced_med").val("");
+                    $("#medico_jq").focus();
                 }
             }
         }

@@ -51,16 +51,9 @@ public class RecetaNombreCol extends HttpServlet {
             String folio_sp = request.getParameter("sp_pac");
             String folio_rec = request.getParameter("folio");
 
-            byte[] a = request.getParameter("nombre_jq").getBytes("ISO-8859-1");
+            byte[] a = request.getParameter("medico_jq").getBytes("ISO-8859-1");
             String nombre = new String(a, "UTF-8");
 
-            System.out.println("nombre *" + nombre + "*");
-            if (nombre.equals("")) {
-                byte[] b = request.getParameter("select_pac").getBytes("ISO-8859-1");
-                nombre = new String(b, "UTF-8");
-            }
-
-            System.out.println("nombre *" + nombre + "*");
             String id_rec = "";
             if (folio_rec.equals("")) {
                 try {
@@ -86,29 +79,26 @@ public class RecetaNombreCol extends HttpServlet {
             }
             int ban = 0;
             try {
-                ResultSet rset = con.consulta("SELECT cedula,nom_com FROM medicos WHERE nom_com = '" + nombre + "' limit 1 ");
+                ResultSet rset = con.consulta("SELECT cedula,nom_med FROM medicos WHERE nom_med = '" + nombre + "' limit 1 ");
                 while (rset.next()) {
-                   
-                    
+
                     ban = 1;
-                    sesion.setAttribute("id_pac", rset.getString(1));
-                    sesion.setAttribute("nom_com", rset.getString(2));                    
-                    sesion.setAttribute("sexo", rset.getString(1));
-                    json.put("id_pac", rset.getString(1));
-                    json.put("nom_com", rset.getString(2));
-                    json.put("sexo", rset.getString(1));
+                    sesion.setAttribute("cedula", rset.getString(1));
+                    sesion.setAttribute("nom_med", rset.getString(2));
+                    json.put("cedula", rset.getString(1));
+                    json.put("nom_med", rset.getString(2));
                     jsona.add(json);
                     json = new JSONObject();
                 }
                 if (ban == 0) {
-                    json.put("id_pac", "");
-                    json.put("nom_com", "");
-                    json.put("sexo", "");
+                    json.put("cedula", "");
+                    json.put("nom_med", "");
                     json.put("mensaje", "inexistente");
                     jsona.add(json);
                     json = new JSONObject();
                 }
             } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
             System.out.println((String) sesion.getAttribute("folio_rec"));

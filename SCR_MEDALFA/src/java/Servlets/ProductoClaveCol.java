@@ -63,7 +63,7 @@ public class ProductoClaveCol extends HttpServlet {
                         String id_pac = "";
                         String id_rec = "";
                         
-                        byte[] a = request.getParameter("nom_pac").getBytes("ISO-8859-1");
+                        byte[] a = request.getParameter("nom_med").getBytes("ISO-8859-1");
                         String nombre = new String(a, "UTF-8");
                         
                         String carnet = "";
@@ -72,10 +72,10 @@ public class ProductoClaveCol extends HttpServlet {
                         while (rset.next()) {
                             id_pac = rset.getString(1);
                         }*/
-                        id_pac = request.getParameter("sexo");
+                        id_pac = request.getParameter("cedula");
                         
                         System.out.println("insertar receta12"+id_pac);
-                        rset = con.consulta("select r.id_rec from receta r, usuarios us, unidades un where r.fol_rec = '" + request.getParameter("folio") + "' and r.cedula = '" + request.getParameter("sexo") + "' and r.id_tip = '2' and r.id_usu = us.id_usu and us.cla_uni = un.cla_uni and un.des_uni = '" + request.getParameter("uni_ate") + "' ");
+                        rset = con.consulta("select r.id_rec from receta r, usuarios us, unidades un where r.fol_rec = '" + request.getParameter("folio") + "' and r.cedula = '" + request.getParameter("cedula") + "' and r.id_tip = '2' and r.id_usu = us.id_usu and us.cla_uni = un.cla_uni and un.des_uni = '" + request.getParameter("uni_ate") + "' ");
                         while (rset.next()) {
                             ban = 1;
                             id_rec = rset.getString(1);
@@ -89,18 +89,21 @@ public class ProductoClaveCol extends HttpServlet {
 
                         json.put("carnet", carnet);
                         if (ban == 1) {
-                            con.insertar("update receta set id_pac = '" + id_pac + "', cedula='" + request.getParameter("cedula") + "', carnet= '" + carnet + "' where id_rec= '" + id_rec + "'");
+                            con.insertar("update receta set id_ser = '" + request.getParameter("id_ser") + "' where id_rec= '" + id_rec + "'");
                         } else {//Si no inserta la receta
-                            con.insertar("insert into receta values ('0', '" + request.getParameter("folio") + "', '1', '" + id_pac + "', '2', '" + sesion.getAttribute("id_usu") + "', '-', '" + carnet + "', '1', NOW(),'1', '0', '0')");
+                            con.insertar("insert into receta values ('0', '" + request.getParameter("folio") + "', '1', '" + id_pac + "', '2', '" + sesion.getAttribute("id_usu") + "', '" + request.getParameter("cedula") + "', ' ', '"+request.getParameter("id_ser")+"',NOW(), '1', '0','0')");
                         }
 
                     } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
             
 
                 } catch (Exception e) {
+                        System.out.println(e.getMessage());
                 }
 
+                sesion.setAttribute("id_ser", request.getParameter("id_ser"));
                 /*
                  *Devuelve datos de la clave solicitada
                  */

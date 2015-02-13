@@ -125,7 +125,12 @@ public class ProductoClave extends HttpServlet {
                         + "and dp.cad_pro between '"+fecha1+"' and '"+fecha2+"' and p.f_status='A' \n"
                         + ";");
                 while (rset.next()) {
-                    json.put("total", rset.getString(1));
+                    int total;
+                    if(rset.getInt(1)<0)
+                        total=0;
+                    else
+                        total=rset.getInt(1);
+                    json.put("total", total);
                 }
                 
                 rset = con.consulta("SELECT sum(i.cant)\n"
@@ -138,7 +143,12 @@ public class ProductoClave extends HttpServlet {
                         + "and dp.cad_pro between '"+fecha1+"' and '"+fecha2+"' and p.f_status='A' \n"
                         + ";");
                 while (rset.next()) {
-                    json.put("origen0", rset.getString(1));
+                    int or0;
+                    if(rset.getInt(1)<0)
+                        or0=0;
+                    else
+                        or0=rset.getInt(1);
+                    json.put("origen0", or0);
                 }
 
                 rset = con.consulta("SELECT sum(i.cant)\n"
@@ -151,7 +161,12 @@ public class ProductoClave extends HttpServlet {
                         + "and dp.cad_pro between '"+fecha1+"' and '"+fecha2+"' and p.f_status='A' \n"
                         + ";");
                 while (rset.next()) {
-                    json.put("origen1", rset.getString(1));
+                    int or1;
+                    if(rset.getInt(1)<0)
+                        or1=0;
+                    else
+                        or1=rset.getInt(1);
+                    json.put("origen1", or1);
                 }
 
                 rset = con.consulta("SELECT sum(i.cant)\n"
@@ -164,7 +179,12 @@ public class ProductoClave extends HttpServlet {
                         + "and dp.cad_pro between '"+fecha1+"' and '"+fecha2+"' and p.f_status='A' \n"
                         + ";");
                 while (rset.next()) {
-                    json.put("origen2", rset.getString(1));
+                    int or2;
+                    if(rset.getInt(1)<0)
+                        or2=0;
+                    else
+                        or2=rset.getInt(1);
+                    json.put("origen2", or2);
                 }
 
                 con.cierraConexion();
