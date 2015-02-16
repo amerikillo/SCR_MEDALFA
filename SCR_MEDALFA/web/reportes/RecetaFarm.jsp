@@ -113,7 +113,7 @@
             JasperPrint jasperPrint = JasperFillManager.fillReport(FileCol.getPath(), paraCol, conn);
             
             JRPrintServiceExporter exporter = new JRPrintServiceExporter();
-            exporter.setParameter(JRExporterParameter.JASPER_PRINT, FileCol);
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
             exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, impresoras[Impre].getAttributes());
             exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
             exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);

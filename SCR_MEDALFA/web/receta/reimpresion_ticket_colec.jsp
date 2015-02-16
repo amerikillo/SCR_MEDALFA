@@ -174,7 +174,7 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-5"><h3>Receta Electr&oacute;nica-Reimpresión de Ticket</h3> </div>
+                    <div class="col-md-5"><h3>Receta Colectiva-Reimpresión de Ticket</h3> </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-3"><img src="../imagenes/medalfalogo2.png" width=60 heigth=60></div> 
                 </div><br/><br>
@@ -199,7 +199,7 @@
                                     String paciente="",fecha="",sexo="",carnet="",num_afi="";
                                     try {
                                         con.conectar();     
-                                         rset= con.consulta("SELECT DISTINCT(fol_rec), nom_com, fecha_hora, id_rec, sexo, afi, expe, medico, cedula, uni from recetas where fol_rec like '%" + fol_rec + "%' and nom_com like '%" + nom_pac + "%'  and baja=0 and id_tip='1' order by id_rec asc;");
+                                         rset= con.consulta("SELECT DISTINCT(fol_rec), nom_com, fecha_hora, id_rec, sexo, afi, expe, medico, cedula, uni from recetas where fol_rec like '%" + fol_rec + "%' and nom_com like '%" + nom_pac + "%'  and baja=0 and id_tip='2' order by id_rec asc;");
                                          //rset= con.consulta("SELECT DISTINCT(fol_rec), nom_com, fecha_hora, id_rec from recetas where fol_rec like '%" + fol_rec + "%' and nom_com like '%" + nom_pac + "%'  and baja=0 and id_tip='1' order by id_rec asc ;");
                                         while (rset.next()) {
                                             fol=rset.getInt(1);

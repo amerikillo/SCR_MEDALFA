@@ -232,7 +232,7 @@
                                     Nombre
                                 </label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="nombre_jq" name="nombre_jq" placeholder="Nombre" onkeypress="return tabular(event, this);" autofocus value="<%=nom_com%>">
+                                    <input type="text" class="form-control" id="nombre_jq" name="nombre_jq" placeholder="Nombre" onkeypress="return tabular(event, this);"  value="<%=nom_com%>">
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-block btn-primary" name="mostrar2" id="mostrar2">Mostrar</button>
@@ -414,7 +414,7 @@
                 ResultSet rset = con.consulta("select dr.fol_det, dr.can_sol, dr.cant_sur, dp.cla_pro, p.des_pro from detreceta dr, detalle_productos dp, productos p where dr.det_pro = dp.det_pro and dp.cla_pro = p.cla_pro and id_rec = '" + id_rec + "' ");
                 while (rset.next()) {
                     //System.out.println(rset.getString("fol_det"));
-        %>
+%>
         <div class="modal fade" id="edita_clave_<%=rset.getString("fol_det")%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -470,19 +470,16 @@
             }
         %>
 
-    </body>
-
-
-    <!-- 
-    ================================================== -->
-    <!-- Se coloca al final del documento para que cargue mas rapido -->
-    <!-- Se debe de seguir ese orden al momento de llamar los JS -->
-    <script src="../js/jquery-1.9.1.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <!--script src="../js/bootstrap-datepicker.js"></script-->
-    <script src="../js/js_farmacia.js"></script>
-    <script>
+        <!-- 
+        ================================================== -->
+        <!-- Se coloca al final del documento para que cargue mas rapido -->
+        <!-- Se debe de seguir ese orden al momento de llamar los JS -->
+        <script src="../js/jquery-1.9.1.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/jquery-ui.js"></script>
+        <!--script src="../js/bootstrap-datepicker.js"></script-->
+        <script src="../js/js_farmacia.js"></script>
+        <script>
 
                                             $('#tablaMedicamento').load('receta_Farmacia.jsp #tablaMedicamento');
                                             $('#tablaBotones').load('receta_Farmacia.jsp #tablaBotones');
@@ -492,22 +489,22 @@
                                              */
                                             $(function() {
                                                 var availableTags = [
-        <%
-            try {
-                con.conectar();
+            <%
                 try {
-                    ResultSet rset = con.consulta("select des_cau from causes");
-                    while (rset.next()) {
-                        out.println("'" + rset.getString(1) + "',");
+                    con.conectar();
+                    try {
+                        ResultSet rset = con.consulta("select des_cau from causes");
+                        while (rset.next()) {
+                            out.println("'" + rset.getString(1) + "',");
+                        }
+                    } catch (Exception e) {
+
                     }
+                    con.cierraConexion();
                 } catch (Exception e) {
 
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-
-            }
-        %>
+            %>
                                                 ];
                                                 $("#causes").autocomplete({
                                                     source: availableTags
@@ -515,22 +512,22 @@
                                             });
                                             $(function() {
                                                 var availableTags = [
-        <%
-            try {
-                con.conectar();
+            <%
                 try {
-                    ResultSet rset = con.consulta("select des_pro from productos");
-                    while (rset.next()) {
-                        out.println("'" + rset.getString(1) + "',");
+                    con.conectar();
+                    try {
+                        ResultSet rset = con.consulta("select des_pro from productos");
+                        while (rset.next()) {
+                            out.println("'" + rset.getString(1) + "',");
+                        }
+                    } catch (Exception e) {
+
                     }
+                    con.cierraConexion();
                 } catch (Exception e) {
 
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-
-            }
-        %>
+            %>
                                                 ];
                                                 $("#des_pro").autocomplete({
                                                     source: availableTags
@@ -540,13 +537,13 @@
 
 
                                             $(document).ready(function() {
-        <%
-            try {
-                con.conectar();
-                ResultSet rset = con.consulta("select fol_det from detreceta where id_rec = '" + id_rec + "' ");
-                while (rset.next()) {
-                    //System.out.println(rset.getString("fol_det"));
-        %>
+            <%
+                try {
+                    con.conectar();
+                    ResultSet rset = con.consulta("select fol_det from detreceta where id_rec = '" + id_rec + "' ");
+                    while (rset.next()) {
+                    //System.out.println(rset.getString("fol_    det"));
+    %>
                                                 $('#btn_modificar_<%=rset.getString("fol_det")%>').click(function() {
                                                     var dir = '../EditaMedicamento';
                                                     var form = $('#form_editaInsumo_<%=rset.getString("fol_det")%>');
@@ -587,16 +584,19 @@
                                                     });
                                                     location.reload();
                                                 });
-        <%
+            <%
+                    }
+                    con.cierraConexion();
+                } catch (Exception e) {
                 }
-                con.cierraConexion();
-            } catch (Exception e) {
-            }
-        %>
+            %>
 
                                             });
 
-    </script>
+        </script>
+
+    </body>
+
 
 
 </html>

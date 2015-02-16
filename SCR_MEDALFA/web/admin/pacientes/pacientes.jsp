@@ -52,6 +52,8 @@
                             <li><a href="../../farmacia/modSurteFarmaciaCol.jsp">Surtido Recetas Colectivas</a></li>
                             <li><a href="../../farmacia/modRecetasSurtidas.jsp">Consultas</a></li>
                             <li><a href="../../receta/receta_colectiva.jsp">Receta Coléctiva</a></li>
+                            <li><a href="../../receta/reimpresion_ticket.jsp">Reimpresión Ticket</a></li>
+                            <li><a href="../../receta/reimpresion_ticket_colec.jsp">Reimpresión Ticket Colectiva</a></li>
                             <!--li class="divider"></li>
                             <li><a href="#rf">Reimpresión de Comprobantes</a></li-->
                         </ul>

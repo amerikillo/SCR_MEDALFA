@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/CapturaMedicamento.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/CapturaMedicamentoColectivo.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/js/js_colectiva.js</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/ProductoClaveCol.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/RecetaNombreCol.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Clases/ConectionDB.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/Farmacias.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/EditaMedicamento.java</file>
+            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/js/js_farmacia.js</file>
             <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/receta/receta_farmacia.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/receta/receta_colectiva.jsp</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/RecetaNueva2.java</file>
-            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/receta/reimpresion_ticket.jsp</file>
+            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/web/js/js_colectiva.js</file>
+            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/MuestraInsumosReceta.java</file>
+            <file>file:/C:/Users/Americo/Documents/GitHub/SCR_MEDALFA/SCR_MEDALFA/src/java/Servlets/EditaMedicamento.java</file>
         </group>
     </open-files>
 </project-private>
